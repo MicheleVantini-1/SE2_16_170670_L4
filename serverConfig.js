@@ -1,11 +1,6 @@
 // MODULE where to put all the constants
 // of the application
 
-// port number used as default 
-var port = 8080;
-// address used as default
-var address = "127.0.0.1";
-
 // all the headers that will be set in the 
 // http response header 
 var headers = {};
@@ -22,7 +17,5 @@ headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Overr
 headers["Content-Type"] = "text/html";
 
 // EXPORTS
-exports.port = port;
-exports.address = address;
 exports.headers = headers;
 
