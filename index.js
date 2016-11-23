@@ -169,4 +169,100 @@ app.post("/modify"
 	  }
 );
 
+// accpeting all the post request of the form http://localhost:port/search
+// and setting the proper callback function
+app.post("/search"
+	, function (request, response)
+	  {
+	  	// boolean value that allow to recognize at the end
+	  	// of the elaboration if any errors occured
+	  	var error = false; 
+
+	  	// variable that stores all the paramters 
+	  	// that will be binded to the template
+	  	var params = {};
+	  	
+	  	// if a body is prensent in the request and is not empty
+	  	if( typeof request.body !== 'undefined' && request.body)
+	    {	
+	    	// if the employee_search parameter is present
+		    // we look into the data structure that stores 
+		    // all the emplyess for the employee with the 
+		    // specified id and if he or she is present we 
+		    // return his or her data
+		    if( typeof request.body.employee_search !== 'undefined' && request.body.employee_search)
+		    {
+		    	var search;
+		    	var isSearch;
+
+		    	search = request.body.employee_search;
+		    	// if the isSearch paramter is present, if it is true 
+		    	// we then proceed with the search operation, otherwise
+		    	// we procees with the delete operation
+		    	if( typeof request.body.isSearch !== 'undefined' && request.body.isSearch)
+			    {
+			    	isSearch = request.body.isSearch;
+
+			    	// at first we check if the id is really an integer
+		    		var id = parseInt(search);
+			    	if(isNaN(id))
+			    	{
+			    		// if it is not the case we return an error
+			    		error = true;
+			    	}
+
+			    	if(!error)
+			    	{
+			    		if(isSearch === "true")
+				    	{
+				    		// search for the employee with the specified id;
+			    			// if there is no employee with the specifed id,
+			    			// then params will be empty after this call
+			    			params = model.searchEmployee(id);
+			    			if(typeof params["id"] !== 'undefined')
+			    			{
+			    				params["formVisibility"] = 'style="display:block;"';
+			    			}
+				    			    		
+
+				    	}
+				    	else if (isSearch === "false")
+				    	{
+				    		// delete the employee with the specified
+				    		// if (if present)
+				    		model.deleteEmployee(id);
+			    			params["formVisibility"] = 'style="display:none;"';
+				    	}
+				    	else
+				    	{
+				    		error = true;
+				    	}	
+			    	}
+			    }
+			    else
+			    {
+			    	error = true;
+			    }
+		    }
+		    else
+		    {		   
+		    	error = true;
+		    }	
+	    }
+
+	    // with the results of the operations performed
+	    // we fill the template and we return it to the user
+	    bind.toFile(
+			'tpl/index.tpl'
+			, params
+			, function (data)
+			  {				
+				response.writeHead(200, serverConfig.headers);
+				response.end(data);
+			  }
+		);
+	  	
+	  }
+);
+
 app.listen(app.get('port'), serverConfig.address)
