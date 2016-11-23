@@ -17,27 +17,6 @@ app.set("port", (process.env.PORT || serverConfig.port));
 // case 'scripts'
 app.use("/scripts", express.static(__dirname + "/script"));
 
-// accpeting all the get request of the form http://localhost:port/
-// and setting the proper callback function
-app.get("/"
-	, function (request, response)
-	  {
-	  	// in this case we produce an html document from
-	  	// a template but we leave all the parameters empty
-	  	// because the user is requesting the home page
-	    bind.toFile(
-			'tpl/index.tpl'
-			, {}
-			, function (data)
-			  {				
-				response.writeHead(200, serverConfig.headers);
-				response.end(data);
-			  }
-		);
-	  	
-	  }
-);
-
 // accpeting all the post request of the form http://localhost:port/modify
 // and setting the proper callback function
 app.post("/modify"
@@ -283,6 +262,27 @@ app.post("/search"
 	    bind.toFile(
 			'tpl/index.tpl'
 			, params
+			, function (data)
+			  {				
+				response.writeHead(200, serverConfig.headers);
+				response.end(data);
+			  }
+		);
+	  	
+	  }
+);
+
+// accpeting all the get request of the form http://localhost:port/
+// and setting the proper callback function
+app.get("/"
+	, function (request, response)
+	  {
+	  	// in this case we produce an html document from
+	  	// a template but we leave all the parameters empty
+	  	// because the user is requesting the home page
+	    bind.toFile(
+			'tpl/index.tpl'
+			, {}
 			, function (data)
 			  {				
 				response.writeHead(200, serverConfig.headers);
