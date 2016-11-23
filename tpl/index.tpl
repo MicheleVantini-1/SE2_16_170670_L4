@@ -6,9 +6,11 @@
 	</head>
 	<body>
 		<h2> Employees manager </h2>
-		<label>ID:</label><input type="numeric" name="employee_search" id="employee_search"/> <b id="searchNaN"> (: searchNaN ~ :) </b>
+		<label>ID:</label><input type="numeric" name="employee_search" id="employee_search" (: search ~ :)/> <b id="searchNaN"> (: searchNaN ~ :) </b>
 		<button onclick="search(true);">Search</button>
 		<button onclick="search(false);">Delete</button>
+		<b> (: problems ~ :) </b>
+		<b> (: newEmpSearched ~ :) </b>
 		<br/><br/>
 		<button onclick="showHideEmployeeForm();" >Show/Hide new emplyee form</button>
 		<br/>
@@ -18,6 +20,7 @@
 			<input type="numeric" name="emp_id" id="emp_id" (: id ~ :) /> <b id="idNaN"> (: idNaN ~ :) </b>
 			<br/>
 			<label>Name:</label><input type="text" name="emp_name" id="emp_name" (: name ~ :)/> <b id="nameEmpty"> (: nameEmpty ~ :) </b>
+			<br/>
 			<label>Surname:</label><input type="text" name="emp_surname" id="emp_surname" (: surname ~ :)/> <b id="surnameEmpty"> (: surnameEmpty ~ :) </b>
 			<br/>
 			<label>Level:</label><input type="numeric" name="emp_lv" id="emp_lv" (: level ~ :)/> <b id="levelNaN"> (: levelNaN ~ :) </b>

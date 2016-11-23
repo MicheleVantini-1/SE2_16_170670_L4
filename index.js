@@ -231,6 +231,7 @@ app.post("/search"
 			    	if(isNaN(id))
 			    	{
 			    		// if it is not the case we return an error
+			    		params['searchNaN'] = "What you typed is not a valid id";
 			    		error = true;
 			    	}
 
@@ -242,11 +243,12 @@ app.post("/search"
 			    			// if there is no employee with the specifed id,
 			    			// then params will be empty after this call
 			    			params = model.searchEmployee(id);
-			    			if(typeof params["id"] !== 'undefined')
+			    			if(typeof params["id"] === 'undefined')
 			    			{
-			    				params["formVisibility"] = 'style="display:block;"';
+			    				params["search"] = 'value="' + id + '"';	
+			    				params["newEmpSearched"] = '<br/>There is no emp with the specified id,<br/>anyway you can create a new one with that id';	
 			    			}
-				    			    		
+				    		params["formVisibility"] = 'style="display:block;"';	    		
 
 				    	}
 				    	else if (isSearch === "false")
@@ -258,17 +260,20 @@ app.post("/search"
 				    	}
 				    	else
 				    	{
+				    		params["problems"] = 'Error: Something has gone wrong with your request';
 				    		error = true;
 				    	}	
 			    	}
 			    }
 			    else
 			    {
+			    	params["problems"] = 'Error: Something has gone wrong with your request';
 			    	error = true;
 			    }
 		    }
 		    else
 		    {		   
+		    	params["problems"] = 'Error: Something has gone wrong with your request';
 		    	error = true;
 		    }	
 	    }
