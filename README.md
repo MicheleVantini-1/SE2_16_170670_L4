@@ -4,5 +4,6 @@
 ## How to test
 1. At first you have to clone this repository using the command `git clone https://github.com/MicheleVantini-1/SE2_16_170670_L4.git`
 2. Once you cloned this repository you have to install the libraries that are not cloned accorging to what specified in the file .gitignore: `npm install`
-3. And now you can launch the server using the command `node index.js`
-4. Now you can access the application at http://127.0.0.1:8080
+3. Change directory with `cd SE2_16_170670_L4`
+4. And now you can launch the server using the command `node index.js`
+5. Now you can access the application at http://127.0.0.1:8080
