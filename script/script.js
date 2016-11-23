@@ -6,6 +6,7 @@
 + @param searchBool true in case of search; false in case of delete
 */
 function search(searchBool) {
+
     var emp_search = document.getElementById("employee_search").value;
     // at first we have to check the form input
     if (emp_search == "" || isNaN(parseInt(emp_search)))
@@ -16,8 +17,27 @@ function search(searchBool) {
     }
     else
     {
-        var form = document.createElement("form");
+        /*var http = new XMLHttpRequest();
+        var url = "/search";
+        var params = "employee_search=" + document.getElementById("employee_search").value 
+                     + "&" 
+                     + "isSearch=" + searchBool;
+        http.open("POST", url, true);
 
+        //Send the proper header information along with the request
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        http.onreadystatechange = function() { //Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                (http.responseText);
+            }
+        }
+        http.send(params);*/
+
+        
+        // if everything is ok with the input we submit the form
+        var form = document.createElement("form");
+    
         var search = document.createElement("input"); 
         search.type = "text";
         search.value = document.getElementById("employee_search").value;
