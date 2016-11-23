@@ -81,6 +81,12 @@ app.post("/modify"
 		    	{
 		    		// otherwise we get the integer from the parameter
 		    		id = parseInt(request.body.emp_id);
+		    		if(isNaN(id))
+		    		{
+		    			params['idNaN'] = "Id must be an integer number";
+		    			params['formVisibility'] = 'style="display:block;"';
+		    			error = true;
+		    		}
 		    	}
 		    	
 		    	// if no errors occured up to this point
@@ -103,6 +109,7 @@ app.post("/modify"
 				    }
 				    else
 				    {
+				    	params['nameEmpty'] = "The name must be not empty";
 				    	error = true;
 				    }
 
@@ -112,26 +119,41 @@ app.post("/modify"
 				    }
 				    else
 				    {
+				    	params['surnameEmpty'] = "The surname must be not empty";
 				    	error = true;
 				    }
 
 				    if( typeof request.body.emp_lv !== 'undefined' && request.body.emp_lv)
 				    {
 				    	level = parseInt(request.body.emp_lv);
+				    	if(isNaN(level))
+				    	{
+				    		params['levelNaN'] = "Level must be an integer number";
+				    		error = true;
+				    	}
 				    }	
 				    else
 				    {
+				    	params['levelNaN'] = "Level must be an integer number";
 				    	error = true;
 				    }
 
 			    	if( typeof request.body.emp_salary !== 'undefined' && request.body.emp_salary)
 				    {
 				    	salary = parseInt(request.body.emp_salary);
+				    	if(isNaN(salary))
+				    	{
+				    		params['slaryNaN'] = "Salary must be an integer number";
+				    		error = true;
+				    	}
 				    }	
 				    else
 				    {
+				    	params['slaryNaN'] = "Salary must be an integer number";
 				    	error = true;
-				    }				    
+				    }
+
+				    
 
 				    // if all the parameters are present we insert
 				    // the employee(if it is a new employee) or we 
@@ -149,7 +171,8 @@ app.post("/modify"
 		    	}
 		    }
 		    else
-		    {
+		    {		   
+		    	params["problems"] = 'Error: Something has gone wrong with your request'; 	
 		    	error = true;
 		    }	
 	    }
