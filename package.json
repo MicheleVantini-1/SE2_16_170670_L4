@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/MicheleVantini-1/SE2_16_170670_L4/issues"
   },
-  "homepage": "https://github.com/MicheleVantini-1/SE2_16_170670_L4#readme"
+  "homepage": "https://github.com/MicheleVantini-1/SE2_16_170670_L4#readme",
+  "dependencies": {
+    "bind": "^0.1.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "util": "^0.10.3"
+  }
 }

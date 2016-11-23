@@ -13,6 +13,7 @@ function search(searchBool) {
     {
         // if the field is empty or is not a number we return an error
         document.getElementById("searchNaN").innerHTML = "Id must be an integer number";
+        document.getElementById("newEmpSearched").innerHTML = "";
         document.getElementById("insertModifyForm").style.display = "none";        
     }
     else

@@ -10,7 +10,7 @@
 		<button onclick="search(true);">Search</button>
 		<button onclick="search(false);">Delete</button>
 		<b> (: problems ~ :) </b>
-		<b> (: newEmpSearched ~ :) </b>
+		<b id="newEmpSearched"> (: newEmpSearched ~ :) </b>
 		<br/><br/>
 		<button onclick="showHideEmployeeForm();" >Show/Hide new emplyee form</button>
 		<br/>
